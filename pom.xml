@@ -10,7 +10,7 @@
         <native.maven.plugin.version>0.9.18</native.maven.plugin.version>
         <maven.compiler.source>${java.specification.version}</maven.compiler.source>
         <maven.compiler.target>${java.specification.version}</maven.compiler.target>
-        <imageName>fortune</imageName>
+        <imageName>remote</imageName>
         <mainClass>xin.opstime.remote.Remote</mainClass>
     </properties>
     <dependencies>

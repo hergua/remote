@@ -13,6 +13,8 @@ import xin.opstime.remote.dto.Operation;
 import xin.opstime.remote.dto.Result;
 import xin.opstime.remote.dto.Status;
 import xin.opstime.remote.utils.StringUtils;
+import org.apache.kafka.common.serialization.StringDeserializer;
+import org.apache.kafka.common.serialization.StringSerializer;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -117,8 +119,8 @@ public class Remote {
         Properties props = new Properties();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafka);
         props.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
-        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
-        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
+        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         props.put("security.protocol", "SASL_PLAINTEXT");
         props.put("sasl.mechanism", "PLAIN");
         props.put("sasl.jaas.config", "org.apache.kafka.common.security.plain.PlainLoginModule required " +
@@ -157,8 +159,8 @@ public class Remote {
     static void initKafkaProducer() {
         Properties props = new Properties();
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafka);
-        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
-        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
+        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         props.put("security.protocol", "SASL_PLAINTEXT");
         props.put("sasl.mechanism", "PLAIN");
         props.put("sasl.jaas.config", "org.apache.kafka.common.security.plain.PlainLoginModule required " +
